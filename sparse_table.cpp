@@ -19,8 +19,8 @@ class SparseTable{
             for(int i=0; i<n; i++){
                 table[i][0] = arr[i];
 			}
-            for(int j=1; j<=this->n; j++){	//后行 
-                for(int i=0; i<n; i++){	//先列 
+            for(int j=1; j<=this->n; j++){	//外层后行 
+                for(int i=0; i<n; i++){	        //内层先列 
                     if(i+(1<<j)-1<n){
                         table[i][j] = table[i][j-1]>table[i+(1<<(j-1))][j-1]?table[i][j-1]:table[i+(1<<(j-1))][j-1];
                     }
