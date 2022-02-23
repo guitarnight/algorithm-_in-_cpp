@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 class TrieTree{
-    int deep;           		//当前已用层数 
+    int deep;           		//当前已用节点数，和单词个数相关 
     int trie[50][26];                   //每个节点26字母，假设最多50节点 
     int *end;                           //一个单词一个end
     public: 
