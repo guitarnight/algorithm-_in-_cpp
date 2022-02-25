@@ -24,7 +24,8 @@ class Bags{
             for(int i=0; i<=W; i++){
                 max[i] = 0;
             }
-            /*从前到后，前面选择第i件物品，后面还可以继续选，直到装不下
+            /*
+	    从前到后，前面选择第i件物品，后面还可以继续选，直到装不下
             for(int i=1; i<=n; i++){
                 for(int j=0; j<=W; j++){
                     if(j>=w[i] && max[j-w[i]]+v[i]>max[j] ){
@@ -69,8 +70,8 @@ class Bags{
                 max[i] = 0;
             }
             for(int i=1; i<=n; i++){
-                for(int j=W; j>=0; j++){
-                    for(int k=0; k<num[i]; k++){
+                for(int j=W; j>=0; j--){
+                    for(int k=1; k<=num[i]; k++){
                        if (j>=w[i][k] && max[j-w[i][k]]+v[i][k]>max[j]){
                            max[j] = max[j-w[i][k]]+v[i][k];
                        }
@@ -123,9 +124,28 @@ int main(){
     cout<<bag.TotalBag(W,n,v,w)<<endl;
     cout<<bag.MultipleBag(W,n,num1,v,w)<<endl;
     cout<<bag.MultipleBag(W,n,num2,v,w)<<endl;
-    cout<<bag.MultipleBag(W,n,num3,v,w)<<endl;		//多重背包中0即是0个 
+    cout<<bag.MultipleBag(W,n,num3,v,w)<<endl;			//多重背包中0即是0个 
     cout<<bag.MixBag(W,n,num1,v,w)<<endl;;
     cout<<bag.MixBag(W,n,num2,v,w)<<endl;;
     cout<<bag.MixBag(W,n,num3,v,w)<<endl;;			//混合背包中0表示无限个 
+	int **w2 = new int*[n+1];
+	for(int i=0; i<=n; i++){
+		w2[i] = new int[num2[i]+1];
+	}
+	for(int i=0; i<=n; i++){
+		for(int j=0; j<=num2[i]; j++){
+			w2[i][j] = j;
+		}
+	}	
+	int **v2 = new int*[n+1];
+	for(int i=0; i<=n; i++){
+		v2[i] = new int[num2[i]+1];
+	}
+	for(int i=0; i<=n; i++){
+		for(int j=0; j<=num2[i]; j++){
+			v2[i][j] = j;
+		}
+	}	
+	cout<<bag.GroupsBag(W,n,num2,v2,w2)<<endl;
 	return 0;
 }
